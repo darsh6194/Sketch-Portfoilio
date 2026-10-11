@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Architects+Daughter&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --sketch-black: #1a1a1a;
+  --sketch-white: #f5f0e8;
+  --sketch-gray: #888;
+  --sketch-light-gray: #c0c0c0;
+  --sketch-paper: #faf6f0;
+  --font-sketch: 'Caveat', cursive;
+  --font-body: 'Architects Daughter', cursive;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--sketch-paper);
+  font-family: var(--font-sketch);
+  color: var(--sketch-black);
+  -webkit-font-smoothing: antialiased;
+}
+
+canvas {
+  touch-action: none;
+}
+
+::selection {
+  background: var(--sketch-black);
+  color: var(--sketch-white);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
