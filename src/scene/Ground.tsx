@@ -9,8 +9,8 @@ export function Ground() {
     () => ({
       uniforms: {
         uTime: { value: 0 },
-        uColor: { value: new THREE.Color('#ece8e0') },
-        uLineColor: { value: new THREE.Color('#c0b8b0') },
+        uColor: { value: new THREE.Color('#efe9dd') },
+        uLineColor: { value: new THREE.Color('#cbc4b6') },
       },
       vertexShader: `
         varying vec2 vUv;
@@ -27,17 +27,24 @@ export function Ground() {
         varying vec2 vUv;
         varying vec3 vWorldPos;
 
+        // cheap hash for a sparse hand-stippled texture
+        float hash(vec2 p){ return fract(sin(dot(p, vec2(41.3, 289.1))) * 43758.5453); }
+
         void main() {
+          // Faint hand-ruled grid
           vec2 grid = abs(fract(vWorldPos.xz * 0.1) - 0.5);
           float line = min(grid.x, grid.y);
-          float gridLine = 1.0 - smoothstep(0.0, 0.03, line);
+          float gridLine = 1.0 - smoothstep(0.0, 0.025, line);
 
-          // Fade grid with distance
+          // Sparse stipple dots for a sketched-paper ground
+          vec2 cell = floor(vWorldPos.xz * 0.5);
+          float stip = step(0.93, hash(cell)) * (1.0 - smoothstep(0.0, 0.12, length(fract(vWorldPos.xz * 0.5) - 0.5)));
+
           float dist = length(vWorldPos.xz);
-          float fade = 1.0 - smoothstep(30.0, 120.0, dist);
-          gridLine *= fade * 0.3;
+          float fade = 1.0 - smoothstep(25.0, 130.0, dist);
 
-          vec3 color = mix(uColor, uLineColor, gridLine);
+          float ink = clamp(gridLine * 0.28 + stip * 0.5, 0.0, 1.0) * fade;
+          vec3 color = mix(uColor, uLineColor, ink);
           gl_FragColor = vec4(color, 1.0);
         }
       `,

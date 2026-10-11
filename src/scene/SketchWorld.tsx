@@ -20,9 +20,10 @@ export function SketchWorld() {
     <Suspense fallback={null}>
       <CameraRig />
 
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[30, 50, 20]} intensity={0.6} color="#fff" />
-      <hemisphereLight args={['#f5f0e8', '#d8d4cc', 0.4]} />
+      {/* Low fill + one strong key so the cel gradientMap resolves into flat ink bands */}
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[28, 44, 18]} intensity={1.35} color="#fffdf7" />
+      <hemisphereLight args={['#fbf7ef', '#cfc8bb', 0.3]} />
 
       <Ground />
       <PathRoad />

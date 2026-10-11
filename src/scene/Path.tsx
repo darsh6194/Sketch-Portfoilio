@@ -1,39 +1,59 @@
 import { useMemo, useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { pathCurve } from '../utils/pathCurve';
+import { SKETCH } from '../sketch/materials';
 
 export function PathRoad() {
-  const tubeGeometry = useMemo(() => {
-    return new THREE.TubeGeometry(pathCurve, 200, 0.8, 8, false);
-  }, []);
+  // Flattened tubes read as a wide paper ribbon rather than a round pipe.
+  const roadGeometry = useMemo(() => new THREE.TubeGeometry(pathCurve, 240, 1.15, 10, false), []);
+  const baseGeometry = useMemo(() => new THREE.TubeGeometry(pathCurve, 240, 1.55, 10, false), []);
 
-  const lineRef = useRef<THREE.Line>(null);
+  const centerLineRef = useRef<THREE.Line>(null);
+  const edgeLeftRef = useRef<THREE.Line>(null);
+  const edgeRightRef = useRef<THREE.Line>(null);
 
-  const dashedLine = useMemo(() => {
-    const points = pathCurve.getPoints(300);
-    const geo = new THREE.BufferGeometry().setFromPoints(points);
-    const mat = new THREE.LineDashedMaterial({ color: '#3a3a3a', dashSize: 1.2, gapSize: 0.8 });
-    return new THREE.Line(geo, mat);
+  // Dashed ink centre line + solid-ish ink edges for a drawn road.
+  const lines = useMemo(() => {
+    const pts = pathCurve.getPoints(360);
+    const makeOffset = (side: number) => {
+      const up = new THREE.Vector3(0, 1, 0);
+      return pts.map((p, i) => {
+        const tan = pathCurve.getTangentAt(i / (pts.length - 1));
+        const left = new THREE.Vector3().crossVectors(up, tan).normalize();
+        return p.clone().add(left.multiplyScalar(side));
+      });
+    };
+    const center = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(pts),
+      new THREE.LineDashedMaterial({ color: SKETCH.ink, dashSize: 1.3, gapSize: 0.9, transparent: true, opacity: 0.8 })
+    );
+    const edgeMat = () =>
+      new THREE.LineDashedMaterial({ color: SKETCH.inkSoft, dashSize: 2.4, gapSize: 0.5, transparent: true, opacity: 0.5 });
+    const left = new THREE.Line(new THREE.BufferGeometry().setFromPoints(makeOffset(1.05)), edgeMat());
+    const right = new THREE.Line(new THREE.BufferGeometry().setFromPoints(makeOffset(-1.05)), edgeMat());
+    return { center, left, right };
   }, []);
 
   useEffect(() => {
-    if (lineRef.current) {
-      lineRef.current.computeLineDistances();
-    }
+    centerLineRef.current?.computeLineDistances();
+    edgeLeftRef.current?.computeLineDistances();
+    edgeRightRef.current?.computeLineDistances();
   }, []);
 
   return (
     <group>
-      <mesh geometry={tubeGeometry} position={[0, -0.3, 0]}>
-        <meshBasicMaterial color="#c8c4b8" transparent opacity={0.8} />
+      {/* Wide pale shoulder */}
+      <mesh geometry={baseGeometry} position={[0, -0.46, 0]} scale={[1, 0.12, 1]}>
+        <meshToonMaterial color={SKETCH.paperDeep} transparent opacity={0.9} />
+      </mesh>
+      {/* Road surface */}
+      <mesh geometry={roadGeometry} position={[0, -0.42, 0]} scale={[1, 0.14, 1]}>
+        <meshToonMaterial color={SKETCH.grayLight} />
       </mesh>
 
-      <primitive ref={lineRef} object={dashedLine} position={[0, 0.05, 0]} />
-
-      <mesh position={[0, -0.48, 0]}>
-        <tubeGeometry args={[pathCurve, 200, 1.8, 8, false]} />
-        <meshBasicMaterial color="#d8d4c8" transparent opacity={0.5} />
-      </mesh>
+      <primitive ref={edgeLeftRef} object={lines.left} position={[0, -0.33, 0]} />
+      <primitive ref={edgeRightRef} object={lines.right} position={[0, -0.33, 0]} />
+      <primitive ref={centerLineRef} object={lines.center} position={[0, -0.32, 0]} />
     </group>
   );
 }
