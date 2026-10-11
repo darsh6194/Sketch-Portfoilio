@@ -3,8 +3,8 @@ import { Edges } from '@react-three/drei';
 import * as THREE from 'three';
 import { pathCurve } from '../utils/pathCurve';
 
-const mat = new THREE.MeshToonMaterial({ color: '#d8d0c4' });
-const darkMat = new THREE.MeshToonMaterial({ color: '#8a7a6a' });
+const mat = new THREE.MeshToonMaterial({ color: '#c8c0b4' });
+const darkMat = new THREE.MeshToonMaterial({ color: '#6a5a4a' });
 
 export function Bridge() {
   const bridgePos = useMemo(() => {

@@ -8,14 +8,13 @@ export function PathRoad() {
   }, []);
 
   const lineRef = useRef<THREE.Line>(null);
-  const dashedLineGeo = useMemo(() => {
+
+  const dashedLine = useMemo(() => {
     const points = pathCurve.getPoints(300);
-    return new THREE.BufferGeometry().setFromPoints(points);
+    const geo = new THREE.BufferGeometry().setFromPoints(points);
+    const mat = new THREE.LineDashedMaterial({ color: '#3a3a3a', dashSize: 1.2, gapSize: 0.8 });
+    return new THREE.Line(geo, mat);
   }, []);
-  const dashedMat = useMemo(
-    () => new THREE.LineDashedMaterial({ color: '#3a3a3a', dashSize: 1.2, gapSize: 0.8 }),
-    []
-  );
 
   useEffect(() => {
     if (lineRef.current) {
@@ -26,18 +25,14 @@ export function PathRoad() {
   return (
     <group>
       <mesh geometry={tubeGeometry} position={[0, -0.3, 0]}>
-        <meshBasicMaterial color="#d8d4cc" transparent opacity={0.6} />
+        <meshBasicMaterial color="#c8c4b8" transparent opacity={0.8} />
       </mesh>
 
-      <primitive
-        ref={lineRef}
-        object={new THREE.Line(dashedLineGeo, dashedMat)}
-        position={[0, 0.05, 0]}
-      />
+      <primitive ref={lineRef} object={dashedLine} position={[0, 0.05, 0]} />
 
       <mesh position={[0, -0.48, 0]}>
         <tubeGeometry args={[pathCurve, 200, 1.8, 8, false]} />
-        <meshBasicMaterial color="#e8e4dc" transparent opacity={0.4} />
+        <meshBasicMaterial color="#d8d4c8" transparent opacity={0.5} />
       </mesh>
     </group>
   );

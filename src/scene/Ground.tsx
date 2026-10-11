@@ -9,8 +9,8 @@ export function Ground() {
     () => ({
       uniforms: {
         uTime: { value: 0 },
-        uColor: { value: new THREE.Color('#f5f0e8') },
-        uLineColor: { value: new THREE.Color('#d0ccc4') },
+        uColor: { value: new THREE.Color('#ece8e0') },
+        uLineColor: { value: new THREE.Color('#c0b8b0') },
       },
       vertexShader: `
         varying vec2 vUv;

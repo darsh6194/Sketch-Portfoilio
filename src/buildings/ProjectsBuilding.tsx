@@ -4,9 +4,9 @@ import { SketchBuilding } from './SketchBuilding';
 import { getPathState } from '../utils/pathCurve';
 import { BUILDING_PATH_POSITIONS } from '../utils/constants';
 
-const mat = new THREE.MeshToonMaterial({ color: '#f5f0e8' });
-const darkMat = new THREE.MeshToonMaterial({ color: '#2a2a2a' });
-const grayMat = new THREE.MeshToonMaterial({ color: '#bbb' });
+const mat = new THREE.MeshToonMaterial({ color: '#ffffff' });
+const darkMat = new THREE.MeshToonMaterial({ color: '#1a1a1a' });
+const grayMat = new THREE.MeshToonMaterial({ color: '#aaaaaa' });
 
 export function ProjectsBuilding() {
   const { position } = getPathState(BUILDING_PATH_POSITIONS.projects);

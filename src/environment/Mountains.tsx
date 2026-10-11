@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { Edges } from '@react-three/drei';
 import * as THREE from 'three';
 
-const mat = new THREE.MeshToonMaterial({ color: '#e8e4dc' });
-const snowMat = new THREE.MeshToonMaterial({ color: '#faf6f0' });
+const mat = new THREE.MeshToonMaterial({ color: '#d0ccc0' });
+const snowMat = new THREE.MeshToonMaterial({ color: '#ffffff' });
 
 interface Mountain {
   x: number;

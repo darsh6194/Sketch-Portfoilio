@@ -14,7 +14,6 @@ import { Clouds } from '../environment/Clouds';
 import { Bridge } from '../environment/Bridge';
 import { SignPosts } from '../environment/SignPosts';
 import { Decorations } from '../environment/Decorations';
-import { SketchPostProcessing } from '../effects/SketchPostProcessing';
 
 export function SketchWorld() {
   return (
@@ -42,7 +41,6 @@ export function SketchWorld() {
       <SignPosts />
       <Decorations />
 
-      <SketchPostProcessing />
     </Suspense>
   );
 }

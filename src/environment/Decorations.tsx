@@ -3,9 +3,9 @@ import { Edges } from '@react-three/drei';
 import * as THREE from 'three';
 import { pathCurve } from '../utils/pathCurve';
 
-const rockMat = new THREE.MeshToonMaterial({ color: '#c0b8ac' });
-const benchMat = new THREE.MeshToonMaterial({ color: '#9a8a78' });
-const lampMat = new THREE.MeshToonMaterial({ color: '#4a4a4a' });
+const rockMat = new THREE.MeshToonMaterial({ color: '#a0988c' });
+const benchMat = new THREE.MeshToonMaterial({ color: '#7a6a58' });
+const lampMat = new THREE.MeshToonMaterial({ color: '#3a3a3a' });
 
 function seededRandom(seed: number) {
   const x = Math.sin(seed * 127.1) * 43758.5453;

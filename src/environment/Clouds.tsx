@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-const cloudMat = new THREE.MeshBasicMaterial({ color: '#eee', transparent: true, opacity: 0.7 });
+const cloudMat = new THREE.MeshBasicMaterial({ color: '#ddd', transparent: true, opacity: 0.8 });
 
 interface CloudData {
   x: number;

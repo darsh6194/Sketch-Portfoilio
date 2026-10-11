@@ -24,11 +24,10 @@ export default function App() {
           gl={{
             antialias: true,
             powerPreference: 'high-performance',
-            toneMapping: THREE.NoToneMapping,
           }}
           dpr={[1, 1.5]}
-          style={{ background: '#faf6f0' }}
-          onCreated={({ scene }) => {
+          onCreated={({ gl, scene }) => {
+            gl.toneMapping = THREE.NoToneMapping;
             scene.background = new THREE.Color('#faf6f0');
             scene.fog = new THREE.Fog('#faf6f0', 50, 180);
           }}
@@ -38,7 +37,9 @@ export default function App() {
           </ScrollControls>
         </Canvas>
 
-        {/* 2D UI Overlays */}
+        <div className="paper-overlay" />
+        <div className="vignette-overlay" />
+
         <NavigationBar />
         <IntroOverlay />
         <ProgressIndicator />

@@ -21,7 +21,7 @@ export function CameraRig() {
     if (activeBuilding) return;
 
     const rawOffset = scroll.offset;
-    smoothOffset.current = THREE.MathUtils.lerp(smoothOffset.current, rawOffset, CAMERA.lerpFactor * 2);
+    smoothOffset.current = THREE.MathUtils.lerp(smoothOffset.current, rawOffset, 0.1);
     const t = smoothOffset.current;
 
     const { position, tangent } = getPathState(t);

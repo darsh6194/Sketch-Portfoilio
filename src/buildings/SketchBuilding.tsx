@@ -46,7 +46,6 @@ export function SketchBuilding({ id, position, label, icon, children }: Props) {
         position={[0, 7, 0]}
         fontSize={1.2}
         color="#1a1a1a"
-        font="https://fonts.gstatic.com/s/caveat/v18/WnznHAc5bAfYB2Q7azYpiN_EMA.woff2"
         anchorX="center"
         anchorY="middle"
         fontWeight={700}
@@ -71,7 +70,6 @@ export function SketchBuilding({ id, position, label, icon, children }: Props) {
           position={[0, 5.8, 0]}
           fontSize={0.6}
           color="#555"
-          font="https://fonts.gstatic.com/s/caveat/v18/WnznHAc5bAfYB2Q7azYpiN_EMA.woff2"
           anchorX="center"
           anchorY="middle"
         >

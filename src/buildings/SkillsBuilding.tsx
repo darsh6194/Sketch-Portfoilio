@@ -4,8 +4,8 @@ import { SketchBuilding } from './SketchBuilding';
 import { getPathState } from '../utils/pathCurve';
 import { BUILDING_PATH_POSITIONS } from '../utils/constants';
 
-const mat = new THREE.MeshToonMaterial({ color: '#f5f0e8' });
-const darkMat = new THREE.MeshToonMaterial({ color: '#2a2a2a' });
+const mat = new THREE.MeshToonMaterial({ color: '#ffffff' });
+const darkMat = new THREE.MeshToonMaterial({ color: '#1a1a1a' });
 
 
 export function SkillsBuilding() {

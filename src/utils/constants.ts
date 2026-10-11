@@ -13,12 +13,12 @@ export const CAMERA = {
   far: 500,
   followOffset: { x: 0, y: 10, z: -15 },
   lookAheadFactor: 0.03,
-  lerpFactor: 0.04,
+  lerpFactor: 0.08,
 };
 
 export const SCROLL = {
   pages: 7,
-  damping: 0.12,
+  damping: 0.25,
 };
 
 export const SECTION_BOUNDARIES: Record<string, [number, number]> = {

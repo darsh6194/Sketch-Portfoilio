@@ -16,9 +16,9 @@ export function Character() {
   const { activeBuilding } = usePortfolioState();
   const timeRef = useRef(0);
 
-  const material = useMemo(() => new THREE.MeshToonMaterial({ color: '#f5f0e8' }), []);
-  const darkMaterial = useMemo(() => new THREE.MeshToonMaterial({ color: '#2a2a2a' }), []);
-  const grayMaterial = useMemo(() => new THREE.MeshToonMaterial({ color: '#888' }), []);
+  const material = useMemo(() => new THREE.MeshToonMaterial({ color: '#ffffff' }), []);
+  const darkMaterial = useMemo(() => new THREE.MeshToonMaterial({ color: '#1a1a1a' }), []);
+  const grayMaterial = useMemo(() => new THREE.MeshToonMaterial({ color: '#777' }), []);
 
   useFrame((_, delta) => {
     if (!groupRef.current || activeBuilding) return;

@@ -4,8 +4,8 @@ import { Text, Edges } from '@react-three/drei';
 import * as THREE from 'three';
 import { pathCurve } from '../utils/pathCurve';
 
-const woodMat = new THREE.MeshToonMaterial({ color: '#a09080' });
-const signMat = new THREE.MeshToonMaterial({ color: '#e8e0d4' });
+const woodMat = new THREE.MeshToonMaterial({ color: '#7a6a5a' });
+const signMat = new THREE.MeshToonMaterial({ color: '#e8e0d0' });
 
 interface SignData {
   t: number;
@@ -53,7 +53,6 @@ function SignPost({ data }: { data: SignData }) {
             position={[0.5, 0, 0.03]}
             fontSize={0.14}
             color="#1a1a1a"
-            font="https://fonts.gstatic.com/s/caveat/v18/WnznHAc5bAfYB2Q7azYpiN_EMA.woff2"
             anchorX="center"
             anchorY="middle"
             fontWeight={700}
